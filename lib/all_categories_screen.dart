@@ -9,9 +9,6 @@ class AllCategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    /// -------------------------------
-    /// 🟦 GROUPING DATA USING TITLES
-    /// -------------------------------
 
     final dailyNeeds = homeCategories.where((e) =>
     e.title.contains("Grocery") ||
