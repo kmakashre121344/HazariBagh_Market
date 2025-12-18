@@ -4,16 +4,16 @@ import '../Model/store_model.dart';
 class StoreProvider extends ChangeNotifier {
   StoreModel? _selectedStore;
 
-  /// ✅ GET SELECTED STORE
+  /// GETTER
   StoreModel? get selectedStore => _selectedStore;
 
-  /// ✅ SET / SELECT STORE
-  void selectStore(StoreModel store) {
+  /// SET STORE
+  void setStore(StoreModel store) {
     _selectedStore = store;
     notifyListeners();
   }
 
-  /// (Optional) CLEAR STORE
+  /// CLEAR STORE (optional)
   void clearStore() {
     _selectedStore = null;
     notifyListeners();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hazari_bagh_market/widgets/top_header.dart';
 import '../../../colors/AppColors.dart';
 import '../../../Model/service_model.dart';
@@ -20,10 +19,9 @@ class ServiceListScreen extends StatelessWidget {
         child: Column(
           children: [
 
-            /// 🔝 TOP HEADER
             const TopHeader(),
 
-            /// 🔙 BACK + TITLE
+            /// 🔙 HEADER
             Padding(
               padding: EdgeInsets.symmetric(horizontal: w * 0.04, vertical: 10),
               child: InkWell(
@@ -43,7 +41,7 @@ class ServiceListScreen extends StatelessWidget {
                         service.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
                           fontSize: w * 0.045,
                           fontWeight: FontWeight.w600,
                           color: primaryColor,
@@ -55,7 +53,7 @@ class ServiceListScreen extends StatelessWidget {
               ),
             ),
 
-            /// 📄 CONTENT CARD
+            /// 📄 CARD
             Expanded(
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(w * 0.04),
@@ -72,7 +70,7 @@ class ServiceListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      /// 🖼 IMAGE
+                      /// IMAGE
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
@@ -83,42 +81,36 @@ class ServiceListScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 12),
 
-                      /// 📝 DESCRIPTION
+                      /// DESCRIPTION
                       Text(
                         service.description,
-                        style: GoogleFonts.inter(
+                        style: const TextStyle(
                           fontSize: 14,
-                          height: 1.5,
-                          fontWeight: FontWeight.w400,
                           color: AppColors.textDark,
                         ),
                       ),
 
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 14),
 
-                      /// 💰 PRICE
+                      /// PRICE
                       Text(
                         service.price,
-                        style: GoogleFonts.inter(
-                          fontSize: 17,
+                        style: const TextStyle(
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: primaryColor,
                         ),
                       ),
 
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 16),
 
-                      /// ⚡ ACTION BUTTONS
+                      /// ACTION BUTTONS
                       Row(
                         children: [
 
-                          _actionBtn(
-                            Icons.call,
-                            "Call",
-                            Colors.green,
-                          ),
+                          _actionBtn(Icons.call, "Call", Colors.green),
                           const SizedBox(width: 8),
 
                           _actionBtn(
@@ -132,21 +124,14 @@ class ServiceListScreen extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primaryColor,
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 12,
-                                ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 "Send Enquiry",
-                                style: GoogleFonts.inter(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
@@ -177,11 +162,7 @@ class ServiceListScreen extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             text,
-            style: GoogleFonts.inter(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
+            style: TextStyle(fontSize: 11, color: color),
           ),
         ],
       ),

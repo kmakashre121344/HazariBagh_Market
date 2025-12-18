@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../Model/salon_model.dart';
 
 class SalonCard extends StatelessWidget {
@@ -50,10 +49,9 @@ class SalonCard extends StatelessWidget {
                       salon.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(
                         fontSize: w * 0.045,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black87,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: h * 0.006),
@@ -75,27 +73,24 @@ class SalonCard extends StatelessWidget {
                             children: [
                               Text(
                                 salon.rating,
-                                style: GoogleFonts.inter(
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.bold,
                                   fontSize: w * 0.032,
                                 ),
                               ),
-                              Icon(
-                                Icons.star,
-                                size: w * 0.035,
-                                color: Colors.white,
-                              ),
+                              Icon(Icons.star,
+                                  size: w * 0.035,
+                                  color: Colors.white),
                             ],
                           ),
                         ),
                         SizedBox(width: w * 0.02),
                         Text(
                           salon.reviews,
-                          style: GoogleFonts.inter(
+                          style: TextStyle(
                             fontSize: w * 0.03,
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.w500,
+                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -106,21 +101,18 @@ class SalonCard extends StatelessWidget {
                     /// 📍 LOCATION
                     Row(
                       children: [
-                        Icon(
-                          Icons.location_on,
-                          size: w * 0.045,
-                          color: primaryColor,
-                        ),
+                        Icon(Icons.location_on,
+                            size: w * 0.045,
+                            color: primaryColor),
                         SizedBox(width: w * 0.01),
                         Expanded(
                           child: Text(
                             salon.location,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
                               fontSize: w * 0.03,
-                              color: Colors.grey.shade600,
-                              fontWeight: FontWeight.w500,
+                              color: Colors.grey,
                             ),
                           ),
                         ),
@@ -143,10 +135,9 @@ class SalonCard extends StatelessWidget {
                   (e) => Chip(
                 label: Text(
                   e,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
                     color: primaryColor,
                     fontSize: w * 0.03,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 backgroundColor:
@@ -217,7 +208,7 @@ class SalonCard extends StatelessWidget {
             SizedBox(width: w * 0.015),
             Text(
               text,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 color: color,
                 fontWeight: FontWeight.w600,
                 fontSize: w * 0.035,

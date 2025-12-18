@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../widgets/top_header.dart';
 
 class JobApplyFormScreen extends StatelessWidget {
@@ -20,6 +19,7 @@ class JobApplyFormScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             /// 🔵 TOP HEADER
             const TopHeader(),
 
@@ -28,6 +28,7 @@ class JobApplyFormScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   SizedBox(height: height * 0.015),
 
                   /// 🔙 BACK & TITLE
@@ -44,9 +45,9 @@ class JobApplyFormScreen extends StatelessWidget {
                         SizedBox(width: width * 0.02),
                         Text(
                           "Apply For Job",
-                          style: GoogleFonts.inter(
+                          style: TextStyle(
                             color: primaryColor,
-                            fontSize: width * 0.04,
+                            fontSize: width * 0.038,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -56,19 +57,18 @@ class JobApplyFormScreen extends StatelessWidget {
 
                   SizedBox(height: height * 0.012),
 
-                  /// 📌 SUBTITLE
+                  /// SUBTITLE
                   Text(
                     "Applying For Full Stack Developer (Tech Solutions Pvt Ltd)",
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                       fontSize: width * 0.032,
                       color: Colors.grey.shade700,
-                      height: 1.4,
                     ),
                   ),
 
                   SizedBox(height: height * 0.02),
 
-                  /// 🧾 FORM CARD
+                  /// FORM CARD
                   Card(
                     elevation: 2,
                     shape: RoundedRectangleBorder(
@@ -78,14 +78,11 @@ class JobApplyFormScreen extends StatelessWidget {
                       padding: EdgeInsets.all(width * 0.04),
                       child: Column(
                         children: [
-                          _buildTextField(
-                              width, "Full Name", "Enter your full name"),
-                          _buildTextField(
-                              width, "Phone Number", "+91-1234567890"),
-                          _buildTextField(
-                              width, "Email", "your.email@example.com"),
-                          _buildTextField(
-                              width, "Total Experience", "e.g. 2 years"),
+
+                          _buildTextField(width, "Full Name", "Enter your full name"),
+                          _buildTextField(width, "Phone Number", "+91-1234567890"),
+                          _buildTextField(width, "Email", "your.email@example.com"),
+                          _buildTextField(width, "Total Exp.", "e.g. 2 years"),
 
                           _buildMultiLineField(
                             width,
@@ -95,7 +92,7 @@ class JobApplyFormScreen extends StatelessWidget {
 
                           SizedBox(height: height * 0.02),
 
-                          /// 🚀 SUBMIT BUTTON
+                          /// SUBMIT BUTTON
                           SizedBox(
                             width: double.infinity,
                             height: height * 0.055,
@@ -103,15 +100,13 @@ class JobApplyFormScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primaryColor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(width * 0.025),
+                                  borderRadius: BorderRadius.circular(width * 0.025),
                                 ),
-                                elevation: 3,
                               ),
                               onPressed: () {},
                               child: Text(
                                 "Submit Application",
-                                style: GoogleFonts.inter(
+                                style: TextStyle(
                                   fontSize: width * 0.04,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -139,18 +134,11 @@ class JobApplyFormScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: width * 0.035),
       child: TextField(
-        style: GoogleFonts.inter(fontSize: width * 0.036),
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
-          labelStyle: GoogleFonts.inter(
-            fontSize: width * 0.035,
-            fontWeight: FontWeight.w500,
-          ),
-          hintStyle: GoogleFonts.inter(
-            fontSize: width * 0.034,
-            color: Colors.grey.shade500,
-          ),
+          labelStyle: TextStyle(fontSize: width * 0.035),
+          hintStyle: TextStyle(fontSize: width * 0.034),
           contentPadding: EdgeInsets.symmetric(
             horizontal: width * 0.035,
             vertical: width * 0.03,
@@ -161,8 +149,7 @@ class JobApplyFormScreen extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(width * 0.025),
-            borderSide:
-            const BorderSide(color: primaryColor, width: 1.5),
+            borderSide: const BorderSide(color: primaryColor, width: 1.5),
           ),
         ),
       ),
@@ -175,18 +162,11 @@ class JobApplyFormScreen extends StatelessWidget {
       padding: EdgeInsets.only(bottom: width * 0.035),
       child: TextField(
         maxLines: 4,
-        style: GoogleFonts.inter(fontSize: width * 0.036),
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
-          labelStyle: GoogleFonts.inter(
-            fontSize: width * 0.035,
-            fontWeight: FontWeight.w500,
-          ),
-          hintStyle: GoogleFonts.inter(
-            fontSize: width * 0.034,
-            color: Colors.grey.shade500,
-          ),
+          labelStyle: TextStyle(fontSize: width * 0.035),
+          hintStyle: TextStyle(fontSize: width * 0.034),
           contentPadding: EdgeInsets.all(width * 0.035),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(width * 0.025),
@@ -194,8 +174,7 @@ class JobApplyFormScreen extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(width * 0.025),
-            borderSide:
-            const BorderSide(color: primaryColor, width: 1.5),
+            borderSide: const BorderSide(color: primaryColor, width: 1.5),
           ),
         ),
       ),

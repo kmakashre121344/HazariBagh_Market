@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hazari_bagh_market/screen/All%20Categories/fashion/service_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hazari_bagh_market/widgets/top_header.dart';
@@ -60,7 +59,9 @@ class _FashionScreenState extends State<FashionScreen>
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
 
-    final services = provider.getServicesByCategory(selectedCategoryId);
+    /// ✅ FILTERED SERVICES
+    final services =
+    provider.getServicesByCategory(selectedCategoryId);
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -68,10 +69,10 @@ class _FashionScreenState extends State<FashionScreen>
         child: Column(
           children: [
 
-            /// 🔝 TOP HEADER
+            /// 🔝 FIXED TOP HEADER
             const TopHeader(),
 
-            /// 🔽 BODY
+            /// 🔽 SCROLLABLE CONTENT
             Expanded(
               child: FadeTransition(
                 opacity: _fade,
@@ -96,7 +97,7 @@ class _FashionScreenState extends State<FashionScreen>
                                 SizedBox(width: w * 0.02),
                                 Text(
                                   "Back",
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                     fontSize: w * 0.045,
                                     fontWeight: FontWeight.w600,
                                     color: themeColor,
@@ -123,7 +124,7 @@ class _FashionScreenState extends State<FashionScreen>
                               children: [
                                 Text(
                                   "Fashion Store",
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontSize: w * 0.055,
                                     fontWeight: FontWeight.bold,
@@ -132,10 +133,9 @@ class _FashionScreenState extends State<FashionScreen>
                                 SizedBox(height: h * 0.008),
                                 Text(
                                   "Explore latest fashion & trends",
-                                  style: GoogleFonts.inter(
+                                  style: TextStyle(
                                     color: Colors.white70,
                                     fontSize: w * 0.035,
-                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ],
@@ -176,8 +176,7 @@ class _FashionScreenState extends State<FashionScreen>
                                     child: Stack(
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                          BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(12),
                                           child: Image.asset(
                                             cat.image,
                                             fit: BoxFit.cover,
@@ -186,8 +185,7 @@ class _FashionScreenState extends State<FashionScreen>
                                         ),
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(12),
+                                            borderRadius: BorderRadius.circular(12),
                                             gradient: LinearGradient(
                                               begin: Alignment.bottomCenter,
                                               end: Alignment.topCenter,
@@ -203,10 +201,10 @@ class _FashionScreenState extends State<FashionScreen>
                                           bottom: 12,
                                           child: Text(
                                             cat.title,
-                                            style: GoogleFonts.inter(
+                                            style: TextStyle(
                                               color: Colors.white,
                                               fontSize: w * 0.04,
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         )
@@ -258,8 +256,7 @@ class _FashionScreenState extends State<FashionScreen>
                                     borderRadius: BorderRadius.circular(14),
                                     boxShadow: const [
                                       BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 6),
+                                          color: Colors.black12, blurRadius: 5),
                                     ],
                                   ),
                                   child: Column(
@@ -285,11 +282,10 @@ class _FashionScreenState extends State<FashionScreen>
                                             child: Text(
                                               service.title.toUpperCase(),
                                               textAlign: TextAlign.center,
-                                              style: GoogleFonts.inter(
+                                              style: TextStyle(
                                                 fontSize: w * 0.028,
                                                 fontWeight: FontWeight.w600,
                                                 color: themeColor,
-                                                letterSpacing: 0.6,
                                               ),
                                             ),
                                           ),
@@ -314,19 +310,18 @@ class _FashionScreenState extends State<FashionScreen>
         ),
       ),
     );
+
   }
 
-  /// 🔹 SECTION TITLE
   Widget _sectionTitle(String title, double w) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: w * 0.04),
       child: Text(
         title,
-        style: GoogleFonts.inter(
+        style: TextStyle(
           color: themeColor,
           fontSize: w * 0.045,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.5,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

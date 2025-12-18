@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../provider/jobs_services_provider.dart';
 import '../../../widgets/top_header.dart';
 import 'job_details_screen.dart';
 
 /// 🎯 APP PRIMARY COLOR
-const Color primaryColor = Color(0xFF84B3B6);
+const Color primaryColor = Color(0xFF84B3B6); // #84b3b6
 
 class JobsServicesScreen extends StatelessWidget {
   const JobsServicesScreen({super.key});
@@ -25,12 +24,11 @@ class JobsServicesScreen extends StatelessWidget {
       backgroundColor: Colors.grey.shade100,
       body: Column(
         children: [
-          /// 🔝 TOP HEADER
           const TopHeader(),
 
           SizedBox(height: h * 0.015),
 
-          /// 🔙 BACK
+          /// 🔙 BACK BUTTON (NO BACKGROUND)
           Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.03),
             child: InkWell(
@@ -42,7 +40,7 @@ class JobsServicesScreen extends StatelessWidget {
                   SizedBox(width: w * 0.02),
                   Text(
                     "Back",
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                       color: primaryColor,
                       fontSize: w * 0.045,
                       fontWeight: FontWeight.w600,
@@ -70,16 +68,16 @@ class JobsServicesScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Jobs & Services",
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: w * 0.05,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: h * 0.005),
+                  const SizedBox(height: 4),
                   Text(
                     "Find opportunities and professional services in Hazaribagh",
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
                       color: Colors.white.withOpacity(0.95),
                       fontSize: w * 0.03,
                     ),
@@ -141,16 +139,14 @@ class JobsServicesScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.tune, color: primaryColor),
                       const SizedBox(width: 6),
-                      Text(
+                      const Text(
                         "Filter By Category",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
                       Text(
                         "View All",
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
                           color: primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -223,7 +219,7 @@ class JobsServicesScreen extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 color: isActive ? Colors.white : Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -234,16 +230,17 @@ class JobsServicesScreen extends StatelessWidget {
     );
   }
 
-  /// 🎴 JOB / SERVICE CARD
+  /// 🎴 JOB CARD (FULL CARD ON TAP)
   static Widget _jobServiceCard(
       BuildContext context, double w, double h, Map<String, String> job) {
+
     return InkWell(
       borderRadius: BorderRadius.circular(w * 0.04),
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => const JobDetailsScreen(),
+            builder: (context) => const JobDetailsScreen(),
           ),
         );
       },
@@ -275,7 +272,7 @@ class JobsServicesScreen extends StatelessWidget {
               job["title"]!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: w * 0.034,
               ),
@@ -283,7 +280,7 @@ class JobsServicesScreen extends StatelessWidget {
 
             Text(
               job["company"]!,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 fontSize: w * 0.028,
                 color: Colors.grey,
               ),
@@ -311,13 +308,13 @@ class JobsServicesScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const JobDetailsScreen(),
+                      builder: (context) => const JobDetailsScreen(),
                     ),
                   );
                 },
                 child: Text(
                   "View Details",
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
                     fontSize: w * 0.03,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -331,7 +328,7 @@ class JobsServicesScreen extends StatelessWidget {
     );
   }
 
-  /// 📄 JOB ROW
+
   static Widget _jobRow(IconData icon, String title, double w) {
     return Row(
       children: [
@@ -342,14 +339,13 @@ class JobsServicesScreen extends StatelessWidget {
             title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.inter(fontSize: w * 0.026),
+            style: TextStyle(fontSize: w * 0.026),
           ),
         ),
       ],
     );
   }
 
-  /// 🏷 FILTER CHIP
   static Widget _filterChip(
       BuildContext context, String title, bool isActive) {
     final provider =
@@ -365,7 +361,7 @@ class JobsServicesScreen extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: GoogleFonts.inter(
+          style: TextStyle(
             color: isActive ? Colors.white : Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.w500,

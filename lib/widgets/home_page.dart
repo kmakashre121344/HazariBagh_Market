@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../screen/categories/categories_page.dart';
 import '../screen/home/home_screen.dart';
 import '../screen/orders/orders_page.dart';
@@ -16,12 +14,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
 
-  final PageStorageBucket _bucket = PageStorageBucket();
-
-  final List<Widget> pages = const [
-    HomeScreen(),
-    CategoryScreen(),
-    MyOrdersScreen(),
+  final List<Widget> pages = [
+    const HomeScreen(),
+    const CategoryScreen(),
+    const MyOrdersScreen(),
     SupportPage(),
   ];
 
@@ -40,19 +36,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
 
-      /// ✅ BODY (STATE PRESERVED)
+      /// ✅ SAFE BODY (NOTCH SAFE)
       body: SafeArea(
         bottom: false,
-        child: PageStorage(
-          bucket: _bucket,
-          child: IndexedStack(
-            index: currentIndex,
-            children: pages,
-          ),
+        child: IndexedStack(
+          index: currentIndex,
+          children: pages,
         ),
       ),
 
-      /// ✅ BOTTOM NAV BAR
+      /// ✅ RESPONSIVE BOTTOM NAV
       bottomNavigationBar: Container(
         height: navHeight,
         padding: EdgeInsets.only(bottom: bottomPadding),
@@ -62,13 +55,6 @@ class _HomePageState extends State<HomePage> {
             topLeft: Radius.circular(w * 0.05),
             topRight: Radius.circular(w * 0.05),
           ),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 8,
-              offset: Offset(0, -2),
-            ),
-          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -83,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /// 🔹 NAV ITEM (GOOGLE FONT)
+  /// 🔹 NAV ITEM (RESPONSIVE)
   Widget _navItem(
       IconData icon,
       String label,
@@ -95,11 +81,7 @@ class _HomePageState extends State<HomePage> {
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {
-        if (currentIndex != index) {
-          setState(() => currentIndex = index);
-        }
-      },
+      onTap: () => setState(() => currentIndex = index),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -115,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 4),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: TextStyle(
               fontSize: textSize,
               fontWeight: FontWeight.w600,
               color: isSelected ? Colors.white : Colors.white70,

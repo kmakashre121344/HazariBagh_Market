@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../colors/AppColors.dart';
 
 class FaqScreenUpdated extends StatelessWidget {
@@ -59,32 +58,26 @@ class FaqScreenUpdated extends StatelessWidget {
 
             /// 🔽 EXPANSION TILE
             child: ExpansionTile(
-              tilePadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 6,
-              ),
-              childrenPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 12,
-              ),
+              tilePadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+              childrenPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
 
               title: Text(
                 faqs[index]["q"]!,
-                style: GoogleFonts.inter(
+                style: TextStyle(
                   fontSize: w * 0.042,
                   fontWeight: FontWeight.w600,
                   color: AppColors.textDark,
                 ),
               ),
 
-              trailing: const Icon(
-                Icons.keyboard_arrow_down_rounded,
-              ),
+              trailing: const Icon(Icons.keyboard_arrow_down_rounded),
 
               children: [
                 Text(
                   faqs[index]["a"]!,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
                     fontSize: w * 0.038,
                     height: 1.4,
                     color: AppColors.textGrey,

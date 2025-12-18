@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../colors/AppColors.dart';
+// Assuming the TopHeader widget is located here:
 import '../../../widgets/top_header.dart';
 
 class PropertyEnquiryScreen extends StatelessWidget {
+
   final String propertyTitle;
   final String contactName;
 
@@ -15,16 +17,16 @@ class PropertyEnquiryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: AppColors.bgLight,
+      // Removed AppBar
       body: Column(
         children: [
-          /// 🔝 TOP HEADER
+          // 🔑 Added TopHeader here
           const TopHeader(),
 
-          /// 🔙 BACK BUTTON
+          // 🔑 Custom Header for Back Button and Title (Replaces AppBar)
           Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.04, vertical: 10),
             child: InkWell(
@@ -50,48 +52,46 @@ class PropertyEnquiryScreen extends StatelessWidget {
             ),
           ),
 
-          /// 📄 FORM CONTENT
+
+          // 🔑 Form Content now in an Expanded SingleChildScrollView
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(
-                w * 0.05,
-                0,
-                w * 0.05,
-                w * 0.08,
-              ),
-              physics: const BouncingScrollPhysics(),
+              padding: EdgeInsets.only(left: w * 0.05, right: w * 0.05, bottom: w * 0.05),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // --- 👤 YOUR NAME FIELD ---
                   _buildInputField(
                     title: "Your Name",
-                    hintText: "Enter your name",
+                    hintText: "Enter your name..........",
                     keyboardType: TextInputType.name,
                     maxLines: 1,
                   ),
-                  SizedBox(height: h * 0.025),
+                  SizedBox(height: w * 0.05),
 
+                  // --- 📞 PHONE NUMBER FIELD ---
                   _buildInputField(
                     title: "Phone Number",
-                    hintText: "+91 9876543210",
+                    hintText: "+91-1223445666",
                     keyboardType: TextInputType.phone,
                     maxLines: 1,
                   ),
-                  SizedBox(height: h * 0.025),
+                  SizedBox(height: w * 0.05),
 
+                  // --- 💬 MESSAGE FIELD ---
                   _buildInputField(
                     title: "Message",
-                    hintText: "I'm interested in this property",
+                    hintText: "I'm interested in this property..........",
                     keyboardType: TextInputType.multiline,
-                    maxLines: 5,
+                    maxLines: 6, // Larger text area
                   ),
-                  SizedBox(height: h * 0.025),
+                  SizedBox(height: w * 0.05),
 
-                  /// 🏠 PROPERTY CONTEXT
+                  // --- ℹ️ PROPERTY CONTEXT BOX ---
                   _buildPropertyContextBox(w),
-                  SizedBox(height: h * 0.05),
+                  SizedBox(height: w * 0.1),
 
-                  /// 🚀 SEND BUTTON
+                  // --- 🚀 SEND ENQUIRE BUTTON ---
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -103,11 +103,11 @@ class PropertyEnquiryScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        debugPrint(
-                            "Enquiry Sent for $propertyTitle to $contactName");
+                        // TODO: Implement submission logic (API call, validation)
+                        print("Enquiry Sent for $propertyTitle");
                       },
                       child: const Text(
-                        "Send Enquiry",
+                        "Send Enquire",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class PropertyEnquiryScreen extends StatelessWidget {
     );
   }
 
-  /// 🔹 INPUT FIELD
+  /// Helper method for building text input fields
   Widget _buildInputField({
     required String title,
     required String hintText,
@@ -149,30 +149,24 @@ class PropertyEnquiryScreen extends StatelessWidget {
           maxLines: maxLines,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: const TextStyle(
-              color: AppColors.textGrey,
-              fontStyle: FontStyle.italic,
-            ),
+            hintStyle: const TextStyle(color: AppColors.textGrey, fontStyle: FontStyle.italic),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 14,
+              vertical: 12,
               horizontal: 16,
             ),
             filled: true,
             fillColor: AppColors.white,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide:
-              const BorderSide(color: AppColors.border, width: 1),
+              borderSide: const BorderSide(color: AppColors.border, width: 1.0),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide:
-              const BorderSide(color: AppColors.border, width: 1),
+              borderSide: const BorderSide(color: AppColors.border, width: 1.0),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide:
-              const BorderSide(color: AppColors.primary, width: 2),
+              borderSide: const BorderSide(color: AppColors.primary, width: 2.0),
             ),
           ),
         ),
@@ -180,7 +174,7 @@ class PropertyEnquiryScreen extends StatelessWidget {
     );
   }
 
-  /// 🔹 PROPERTY CONTEXT BOX
+  /// Helper method for the property context box
   Widget _buildPropertyContextBox(double w) {
     return Container(
       width: double.infinity,

@@ -250,22 +250,21 @@ class _HomeScreenState extends State<HomeScreen>
                     GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      itemCount: homeCategories.length > 8 ? 8 : homeCategories.length,
+                      itemCount: homeCategories.length > 6 ? 6 : homeCategories.length,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 0.85,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        childAspectRatio: 0.74,
                       ),
-                      itemBuilder: (context, index) {
+                      itemBuilder: (_, index) {
                         final item = homeCategories[index];
 
                         return InkWell(
                           borderRadius: BorderRadius.circular(18),
                           onTap: () => _openPage(item.screen),
                           child: Container(
-                            padding: const EdgeInsets.all(12),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(18),
@@ -278,18 +277,17 @@ class _HomeScreenState extends State<HomeScreen>
                               ],
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
 
-                                /// 🖼 IMAGE (fixed & centered)
+                                /// 🖼 IMAGE (controlled height)
                                 Expanded(
-                                  flex: 7,
+                                  flex: 6,
                                   child: Transform(
                                     alignment: Alignment.center,
                                     transform: Matrix4.identity()
                                       ..setEntry(3, 2, 0.001)
-                                      ..rotateX(-0.05)
-                                      ..rotateY(0.05),
+                                      ..rotateX(-0.06)
+                                      ..rotateY(0.06),
                                     child: Image.asset(
                                       item.image,
                                       fit: BoxFit.contain,
@@ -297,21 +295,23 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                 ),
 
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 8),
 
-                                /// 📝 TITLE (no overflow)
-                                SizedBox(
-                                  height: 32,
-                                  child: Text(
-                                    item.title,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.inter(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black87,
-                                      height: 1.2,
+                                /// 📝 TEXT (properly visible)
+                                Expanded(
+                                  flex: 3,
+                                  child: Center(
+                                    child: Text(
+                                      item.title,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                        height: 1.2,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -321,6 +321,7 @@ class _HomeScreenState extends State<HomeScreen>
                         );
                       },
                     ),
+
 
                     SizedBox(height: h * 0.03),
 
@@ -482,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen>
         Text(
           title,
           style: GoogleFonts.inter(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -492,7 +493,6 @@ class _HomeScreenState extends State<HomeScreen>
             "View All",
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
-              fontSize: 12,
               color: const Color(0xFF3670A3),
             ),
           ),

@@ -6,75 +6,52 @@ import '../provider/store_provider.dart';
 class StoreDetailsScreen extends StatelessWidget {
   const StoreDetailsScreen({super.key});
 
-  static const Color primaryColor = Color(0xFF3670A3);
-
   @override
   Widget build(BuildContext context) {
     final storeProvider = context.watch<StoreProvider>();
     final store = storeProvider.selectedStore;
 
-    /// 🔴 SAFETY CHECK
     if (store == null) {
       return const Scaffold(
-        body: Center(
-          child: Text(
-            "No Store Selected",
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+        body: Center(child: Text("No Store Selected")),
       );
     }
 
     final size = MediaQuery.of(context).size;
-    final w = size.width;
-    final h = size.height;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
 
-      /// 🔵 APP BAR
+      /// 🌈 APP BAR
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
         title: Text(
           store.name,
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w600,
-          ),
+          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
         ),
         flexibleSpace: const DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color(0xFF3670A3),
-                Color(0xFF4B8AC9),
-              ],
+              colors: [Color(0xFF3670A3), Color(0xFF4B8AC9)],
             ),
           ),
         ),
       ),
 
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             /// 🖼 STORE IMAGE
             Stack(
               children: [
                 Image.asset(
                   store.image,
-                  height: h * 0.30,
+                  height: size.height * 0.30,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-
-                /// ⭐ RATING CHIP
                 Positioned(
                   bottom: 16,
                   left: 16,
@@ -83,37 +60,33 @@ class StoreDetailsScreen extends StatelessWidget {
               ],
             ),
 
-            /// 📦 CONTENT CARD
+            /// 📦 CONTENT
             Container(
               transform: Matrix4.translationValues(0, -20, 0),
-              padding: EdgeInsets.all(w * 0.05),
+              padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(26),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  /// 🏪 STORE NAME
                   Text(
                     store.name,
                     style: GoogleFonts.inter(
-                      fontSize: w * 0.055,
+                      fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
 
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
 
-                  /// 🏷 CATEGORY
+                  /// CATEGORY
                   _categoryChip(store.category),
 
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 16),
 
-                  /// 📍 INFO ROW
+                  /// INFO ROW
                   Row(
                     children: [
                       _infoItem(
@@ -121,7 +94,7 @@ class StoreDetailsScreen extends StatelessWidget {
                         text: store.distance,
                         color: Colors.red,
                       ),
-                      const SizedBox(width: 24),
+                      const SizedBox(width: 20),
                       _infoItem(
                         icon: Icons.star,
                         text: store.rating.toString(),
@@ -132,49 +105,45 @@ class StoreDetailsScreen extends StatelessWidget {
 
                   const SizedBox(height: 24),
                   Divider(color: Colors.grey.shade300),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 16),
 
-                  /// 📄 ABOUT
+                  /// ABOUT
                   Text(
                     "About Store",
                     style: GoogleFonts.inter(
-                      fontSize: w * 0.045,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-
-                  const SizedBox(height: 10),
-
+                  const SizedBox(height: 8),
                   Text(
                     "This store provides quality products at affordable prices. "
-                        "Customer satisfaction and fast service are our top priorities.",
+                        "Customer satisfaction and fast service is our priority.",
                     style: GoogleFonts.inter(
-                      fontSize: w * 0.038,
-                      height: 1.6,
+                      fontSize: 14,
+                      height: 1.5,
                       color: Colors.grey.shade700,
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 24),
 
-                  /// 🚀 VISIT STORE BUTTON
+                  /// VISIT BUTTON
                   SizedBox(
                     width: double.infinity,
-                    height: h * 0.06,
+                    height: 48,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
+                        backgroundColor: const Color(0xFF3670A3),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {
-                        // TODO: Navigate to store products page
-                      },
+                      onPressed: () {},
                       child: Text(
                         "Visit Store",
                         style: GoogleFonts.inter(
-                          fontSize: w * 0.042,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
                         ),
@@ -190,13 +159,13 @@ class StoreDetailsScreen extends StatelessWidget {
     );
   }
 
-  /// ⭐ RATING CHIP
+  /// 🔹 UI HELPERS
   Widget _ratingChip(double rating) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.65),
-        borderRadius: BorderRadius.circular(10),
+        color: Colors.black.withOpacity(0.6),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: [
@@ -214,26 +183,24 @@ class StoreDetailsScreen extends StatelessWidget {
     );
   }
 
-  /// 🏷 CATEGORY CHIP
   Widget _categoryChip(String category) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: primaryColor.withOpacity(0.12),
-        borderRadius: BorderRadius.circular(22),
+        color: Colors.blue.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         category,
         style: GoogleFonts.inter(
           fontSize: 13,
-          color: primaryColor,
+          color: const Color(0xFF3670A3),
           fontWeight: FontWeight.w600,
         ),
       ),
     );
   }
 
-  /// 📍 INFO ITEM
   Widget _infoItem({
     required IconData icon,
     required String text,
@@ -242,7 +209,7 @@ class StoreDetailsScreen extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: color, size: 18),
-        const SizedBox(width: 6),
+        const SizedBox(width: 4),
         Text(
           text,
           style: GoogleFonts.inter(

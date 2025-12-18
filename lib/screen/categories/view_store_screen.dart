@@ -21,7 +21,7 @@ class ViewStoreScreen extends StatelessWidget {
 
     if (store == null) {
       return const Scaffold(
-        body: Center(child: Text("No Store found")),
+        body: Center(child: Text("No Store Selected")),
       );
     }
 
@@ -242,27 +242,23 @@ class ViewStoreScreen extends StatelessWidget {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// 🖼 IMAGE (Flexible height)
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(w * 0.045),
-              ),
-              child: Image.asset(
-                "assets/images/clothe.jpg",
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+          ClipRRect(
+            borderRadius:
+            BorderRadius.vertical(top: Radius.circular(w * 0.045)),
+            child: Image.asset(
+              "assets/images/clothe.jpg",
+              height: h * 0.18,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
 
-          /// 📦 CONTENT
           Padding(
             padding: EdgeInsets.all(w * 0.03),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "Product Name",
@@ -273,9 +269,7 @@ class ViewStoreScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-
-                SizedBox(height: h * 0.006),
-
+                SizedBox(height: h * 0.004),
                 Text(
                   "₹100",
                   style: GoogleFonts.inter(
@@ -284,12 +278,11 @@ class ViewStoreScreen extends StatelessWidget {
                     color: Colors.green,
                   ),
                 ),
-
-                SizedBox(height: h * 0.01),
+                SizedBox(height: h * 0.012),
 
                 SizedBox(
                   width: double.infinity,
-                  height: h * 0.042,
+                  height: h * 0.045,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
@@ -330,7 +323,6 @@ class ViewStoreScreen extends StatelessWidget {
       ),
     );
   }
-
 
   /// ================= CUSTOMER REVIEWS =================
   Widget _customerReviews(double w, double h) {

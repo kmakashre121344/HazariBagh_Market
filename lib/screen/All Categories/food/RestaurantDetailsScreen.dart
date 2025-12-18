@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../widgets/top_header.dart';
 import '../../../provider/cart_provider.dart';
 
@@ -28,29 +26,24 @@ class RestaurantDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
-    final w = mq.width;
-    final h = mq.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
-
-          /// 🔝 HEADER
           const TopHeader(),
 
-          /// 🔽 CONTENT
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  SizedBox(height: h * 0.02),
+                  SizedBox(height: mq.height * 0.02),
 
-                  /// 🔙 BACK BUTTON
+                  /// 🔙 BACK BUTTON (arrow + text both clickable)
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+                    padding: EdgeInsets.symmetric(horizontal: mq.width * 0.04),
                     child: InkWell(
                       onTap: () => Navigator.pop(context),
                       borderRadius: BorderRadius.circular(8),
@@ -58,14 +51,15 @@ class RestaurantDetailsScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.arrow_back,
-                              color: themeColor, size: w * 0.06),
-                          SizedBox(width: w * 0.02),
+                              color: themeColor,
+                              size: mq.width * 0.06),
+                          SizedBox(width: mq.width * 0.02),
                           Text(
                             "Back",
-                            style: GoogleFonts.inter(
-                              fontSize: w * 0.045,
-                              fontWeight: FontWeight.w600,
+                            style: TextStyle(
+                              fontSize: mq.width * 0.045,
                               color: themeColor,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -73,20 +67,20 @@ class RestaurantDetailsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: h * 0.015),
+                  SizedBox(height: mq.height * 0.015),
 
-                  /// 🏪 RESTAURANT CARD
+                  /// 🏪 RESTAURANT DETAILS
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+                    padding: EdgeInsets.symmetric(horizontal: mq.width * 0.04),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 8,
-                            offset: Offset(0, 4),
+                            offset: Offset(0, 3),
                           ),
                         ],
                       ),
@@ -94,90 +88,81 @@ class RestaurantDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          /// IMAGE
                           ClipRRect(
                             borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(16)),
+                                top: Radius.circular(14)),
                             child: Image.asset(
                               img,
-                              height: h * 0.26,
+                              height: mq.height * 0.25,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.all(14),
+                            padding: const EdgeInsets.all(12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
-                                /// NAME
                                 Text(
                                   name,
-                                  style: GoogleFonts.inter(
-                                    fontSize: w * 0.055,
-                                    fontWeight: FontWeight.w700,
+                                  style: TextStyle(
+                                    fontSize: mq.width * 0.055,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
 
                                 const SizedBox(height: 6),
 
-                                /// TYPE
                                 Text(
                                   type,
-                                  style: GoogleFonts.inter(
-                                    fontSize: w * 0.035,
-                                    color: Colors.grey.shade600,
+                                  style: TextStyle(
+                                    fontSize: mq.width * 0.035,
+                                    color: Colors.grey,
                                   ),
                                 ),
 
                                 const SizedBox(height: 12),
 
-                                /// META INFO
                                 Row(
                                   children: [
                                     const Icon(Icons.star,
                                         color: Colors.orange),
-                                    const SizedBox(width: 4),
-                                    Text(rating,
-                                        style: GoogleFonts.inter()),
+                                    const SizedBox(width: 5),
+                                    Text(rating),
 
-                                    const SizedBox(width: 18),
+                                    const SizedBox(width: 20),
 
-                                    const Icon(Icons.timer,
-                                        color: Colors.grey),
-                                    const SizedBox(width: 4),
-                                    Text(time,
-                                        style: GoogleFonts.inter()),
+                                    const Icon(Icons.timer, color: Colors.grey),
+                                    const SizedBox(width: 5),
+                                    Text(time),
 
-                                    const SizedBox(width: 18),
+                                    const SizedBox(width: 20),
 
                                     const Icon(Icons.location_on,
                                         color: Colors.red),
-                                    const SizedBox(width: 4),
-                                    Text(distance,
-                                        style: GoogleFonts.inter()),
+                                    const SizedBox(width: 5),
+                                    Text(distance),
                                   ],
                                 )
                               ],
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
                   ),
 
-                  SizedBox(height: h * 0.03),
+                  SizedBox(height: mq.height * 0.03),
 
                   /// 📋 MENU TITLE
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+                    padding: EdgeInsets.symmetric(horizontal: mq.width * 0.04),
                     child: Text(
                       "Menu",
-                      style: GoogleFonts.inter(
-                        fontSize: w * 0.06,
-                        fontWeight: FontWeight.w700,
+                      style: TextStyle(
+                        fontSize: mq.width * 0.06,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -190,7 +175,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   _menuItem(context, mq, "Butter Chicken", "280"),
                   _menuItem(context, mq, "Paneer Tikka", "240"),
 
-                  SizedBox(height: h * 0.08),
+                  SizedBox(height: mq.height * 0.08),
                 ],
               ),
             ),
@@ -203,12 +188,10 @@ class RestaurantDetailsScreen extends StatelessWidget {
   /// 🍽 MENU ITEM CARD
   Widget _menuItem(
       BuildContext context, Size mq, String title, String price) {
-    final w = mq.width;
-
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: w * 0.04, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: mq.width * 0.04, vertical: 6),
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
@@ -223,31 +206,29 @@ class RestaurantDetailsScreen extends StatelessWidget {
         child: Row(
           children: [
 
-            /// IMAGE
+            /// 🖼 PRODUCT IMAGE
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
                 img,
-                width: w * 0.20,
-                height: w * 0.20,
+                width: mq.width * 0.20,
+                height: mq.width * 0.20,
                 fit: BoxFit.cover,
               ),
             ),
 
             const SizedBox(width: 12),
 
-            /// DETAILS
+            /// 📝 DETAILS
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.inter(
-                      fontSize: w * 0.045,
-                      fontWeight: FontWeight.w700,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: mq.width * 0.045,
                     ),
                   ),
 
@@ -255,8 +236,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
                   Text(
                     "Authentic & delicious",
-                    style: GoogleFonts.inter(
-                      fontSize: w * 0.033,
+                    style: TextStyle(
+                      fontSize: mq.width * 0.033,
                       color: Colors.grey,
                     ),
                   ),
@@ -265,8 +246,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
                   Text(
                     "₹$price",
-                    style: GoogleFonts.inter(
-                      fontSize: w * 0.045,
+                    style: TextStyle(
+                      fontSize: mq.width * 0.045,
                       fontWeight: FontWeight.bold,
                       color: themeColor,
                     ),
@@ -275,7 +256,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ),
             ),
 
-            /// ADD BUTTON
+            /// 🛒 ADD TO CART
             InkWell(
               onTap: () {
                 Provider.of<CartProvider>(context, listen: false).addItem({
@@ -283,7 +264,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   "price": double.parse(price),
                   "qty": 1,
                   "image": img,
-                  "store": name,
+                  "store": name, // ✅ restaurant wise cart
                 });
 
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -299,10 +280,10 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Add",
-                  style: GoogleFonts.inter(
-                    fontSize: w * 0.035,
-                    fontWeight: FontWeight.w700,
+                  style: TextStyle(
                     color: themeColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: mq.width * 0.035,
                   ),
                 ),
               ),
